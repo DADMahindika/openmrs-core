@@ -146,21 +146,27 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 		}
 		PersonName newName = new PersonName(Integer.valueOf(pn.getPersonNameId()));
 		if (pn.getGivenName() != null) {
-			newName.setGivenName(String.valueOf(pn.getGivenName()));
+			givenNameAftreTrim = pn.getGivenName().trim();
+			newName.setGivenName(String.valueOf(givenNameAftreTrim));
 		}
 		if (pn.getMiddleName() != null) {
-			newName.setMiddleName(String.valueOf(pn.getMiddleName()));
+			middlenNameAftreTrim = pn.getMiddleName().trim();
+			newName.setMiddleName(String.valueOf(middlenNameAftreTrim));
 		}
 		if (pn.getFamilyName() != null) {
-			newName.setFamilyName(String.valueOf(pn.getFamilyName()));
+			familyNameAftreTrim = pn.getFamilyName().trim();
+			newName.setFamilyName(String.valueOf(familyNameAftreTrim));
 		}
 		if (pn.getFamilyName2() != null) {
+			familynName2AftreTrim = pn.getFamilyName2().trim();
 			newName.setFamilyName2(String.valueOf(pn.getFamilyName2()));
 		}
 		if (pn.getFamilyNamePrefix() != null) {
+			familyNamePrefixAftreTrim = pn.getFamilyNamePrefix().trim();
 			newName.setFamilyNamePrefix(String.valueOf(pn.getFamilyNamePrefix()));
 		}
 		if (pn.getFamilyNameSuffix() != null) {
+			familyNameSuffix()AftreTrim = pn.getFamilyNameSuffix().trim();
 			newName.setFamilyNameSuffix(String.valueOf(pn.getFamilyNameSuffix()));
 		}
 		if (pn.getPrefix() != null) {
