@@ -7,7 +7,7 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-// Dilki teat
+
 package org.openmrs;
 
 import static org.apache.commons.lang.StringUtils.defaultString;
@@ -159,15 +159,15 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 		}
 		if (pn.getFamilyName2() != null) {
 			String familynName2AftreTrim = pn.getFamilyName2().trim();
-			newName.setFamilyName2(String.valueOf(pn.getFamilyName2()));
+			newName.setFamilyName2(String.valueOf(familynName2AftreTrim));
 		}
 		if (pn.getFamilyNamePrefix() != null) {
 			String familyNamePrefixAftreTrim = pn.getFamilyNamePrefix().trim();
-			newName.setFamilyNamePrefix(String.valueOf(pn.getFamilyNamePrefix()));
+			newName.setFamilyNamePrefix(String.valueOf(familyNamePrefixAftreTrim));
 		}
 		if (pn.getFamilyNameSuffix() != null) {
 			String familyNameSuffixAftreTrim = pn.getFamilyNameSuffix().trim();
-			newName.setFamilyNameSuffix(String.valueOf(pn.getFamilyNameSuffix()));
+			newName.setFamilyNameSuffix(String.valueOf(familyNameSuffixAftreTrim));
 		}
 		if (pn.getPrefix() != null) {
 			newName.setPrefix(String.valueOf(pn.getPrefix()));
@@ -507,7 +507,8 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 	public static String getFormat() {
 		return PersonName.format;
 	}
-	
+
+
 	/**
 	 Provides a default comparator.
 	 @since 1.12
