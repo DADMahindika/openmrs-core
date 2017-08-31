@@ -166,7 +166,7 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 			newName.setFamilyNamePrefix(String.valueOf(pn.getFamilyNamePrefix()));
 		}
 		if (pn.getFamilyNameSuffix() != null) {
-			familyNameSuffix()AftreTrim = pn.getFamilyNameSuffix().trim();
+			familyNameSuffixAftreTrim = pn.getFamilyNameSuffix().trim();
 			newName.setFamilyNameSuffix(String.valueOf(pn.getFamilyNameSuffix()));
 		}
 		if (pn.getPrefix() != null) {
