@@ -146,27 +146,27 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 		}
 		PersonName newName = new PersonName(Integer.valueOf(pn.getPersonNameId()));
 		if (pn.getGivenName() != null) {
-			givenNameAftreTrim = pn.getGivenName().trim();
+			String givenNameAftreTrim = pn.getGivenName().trim();
 			newName.setGivenName(String.valueOf(givenNameAftreTrim));
 		}
 		if (pn.getMiddleName() != null) {
-			middlenNameAftreTrim = pn.getMiddleName().trim();
+			String middlenNameAftreTrim = pn.getMiddleName().trim();
 			newName.setMiddleName(String.valueOf(middlenNameAftreTrim));
 		}
 		if (pn.getFamilyName() != null) {
-			familyNameAftreTrim = pn.getFamilyName().trim();
+			String familyNameAftreTrim = pn.getFamilyName().trim();
 			newName.setFamilyName(String.valueOf(familyNameAftreTrim));
 		}
 		if (pn.getFamilyName2() != null) {
-			familynName2AftreTrim = pn.getFamilyName2().trim();
+			String familynName2AftreTrim = pn.getFamilyName2().trim();
 			newName.setFamilyName2(String.valueOf(pn.getFamilyName2()));
 		}
 		if (pn.getFamilyNamePrefix() != null) {
-			familyNamePrefixAftreTrim = pn.getFamilyNamePrefix().trim();
+			String familyNamePrefixAftreTrim = pn.getFamilyNamePrefix().trim();
 			newName.setFamilyNamePrefix(String.valueOf(pn.getFamilyNamePrefix()));
 		}
 		if (pn.getFamilyNameSuffix() != null) {
-			familyNameSuffixAftreTrim = pn.getFamilyNameSuffix().trim();
+			String familyNameSuffixAftreTrim = pn.getFamilyNameSuffix().trim();
 			newName.setFamilyNameSuffix(String.valueOf(pn.getFamilyNameSuffix()));
 		}
 		if (pn.getPrefix() != null) {
