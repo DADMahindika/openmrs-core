@@ -7,19 +7,14 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-<<<<<<< HEAD
-=======
+
 // Dilki teat
->>>>>>> parent of 5b8ae2bab... RA-543 fixed the compilation errors afre trimmed names
 package org.openmrs;
-
 import static org.apache.commons.lang.StringUtils.defaultString;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.search.annotations.Analyzer;
@@ -158,14 +153,14 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 			newName.setFamilyName(String.valueOf(pn.getFamilyName()));
 		}
 		if (pn.getFamilyName2() != null) {
-<<<<<<< HEAD
+
 			newName.setFamilyName2(String.valueOf(pn.getFamilyName2()));
 		}
 		if (pn.getFamilyNamePrefix() != null) {
 			newName.setFamilyNamePrefix(String.valueOf(pn.getFamilyNamePrefix()));
 		}
 		if (pn.getFamilyNameSuffix() != null) {
-=======
+
 			String familynName2AftreTrim = pn.getFamilyName2().trim();
 			newName.setFamilyName2(String.valueOf(pn.getFamilyName2()));
 		}
@@ -175,7 +170,6 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 		}
 		if (pn.getFamilyNameSuffix() != null) {
 			String familyNameSuffixAftreTrim = pn.getFamilyNameSuffix().trim();
->>>>>>> parent of 5b8ae2bab... RA-543 fixed the compilation errors afre trimmed names
 			newName.setFamilyNameSuffix(String.valueOf(pn.getFamilyNameSuffix()));
 		}
 		if (pn.getPrefix() != null) {
