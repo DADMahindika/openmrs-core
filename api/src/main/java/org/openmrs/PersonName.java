@@ -3,20 +3,16 @@
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
  * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
- *
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-
 package org.openmrs;
 
 import static org.apache.commons.lang.StringUtils.defaultString;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.search.annotations.Analyzer;
@@ -32,7 +28,6 @@ import org.openmrs.util.OpenmrsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
-
 import javax.swing.JOptionPane;
 import javax.swing.JDialog;
 
@@ -41,7 +36,6 @@ import javax.swing.JDialog;
  */
 @Indexed
 public class PersonName extends BaseOpenmrsData implements java.io.Serializable, Cloneable, Comparable<PersonName> {
-
 	public static final long serialVersionUID = 4353L;
 
 	private static final Logger log = LoggerFactory.getLogger(PersonName.class);
@@ -49,47 +43,38 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 	// Fields
 	@DocumentId
 	private Integer personNameId;
-
 	@IndexedEmbedded(includeEmbeddedObjectId = true)
 	private Person person;
-
 	private Boolean preferred = false;
 
 	@Fields({
-			@Field(name = "givenNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(8f)),
-			@Field(name = "givenNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(4f)),
-			@Field(name = "givenNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER), boost = @Boost(2f))
+		@Field(name = "givenNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(8f)),
+		@Field(name = "givenNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(4f)),
+		@Field(name = "givenNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER), boost = @Boost(2f))
 	})
 	private String givenName;
 	private String prefix;
-
 	@Fields({
-			@Field(name = "middleNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
-			@Field(name = "middleNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
-			@Field(name = "middleNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER))
+		@Field(name = "middleNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
+		@Field(name = "middleNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
+		@Field(name = "middleNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER))
 	})
 	private String middleName;
-
 	private String familyNamePrefix;
-
 	@Fields({
-			@Field(name = "familyNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(8f)),
-			@Field(name = "familyNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(4f)),
-			@Field(name = "familyNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER), boost = @Boost(2f)),
+		@Field(name = "familyNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(8f)),
+		@Field(name = "familyNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(4f)),
+		@Field(name = "familyNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER), boost = @Boost(2f)),
 	})
 	private String familyName;
-
 	@Fields({
-			@Field(name = "familyName2Exact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
-			@Field(name = "familyName2Start", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
-			@Field(name = "familyName2Anywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER)),
+		@Field(name = "familyName2Exact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
+		@Field(name = "familyName2Start", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
+		@Field(name = "familyName2Anywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER)),
 	})
 	private String familyName2;
-
 	private String familyNameSuffix;
-
 	private String degree;
-
 	private static String format = OpenmrsConstants.PERSON_NAME_FORMAT_SHORT;
 
 	// Constructors
@@ -97,7 +82,7 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 	/** default constructor */
 	public PersonName() {
 	}
-
+	
 	/** constructor with id */
 	public PersonName(Integer personNameId) {
 		this.personNameId = personNameId;
@@ -128,12 +113,12 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 	 */
 	public boolean equalsContent(PersonName otherName) {
 		return new EqualsBuilder().append(defaultString(otherName.getPrefix()), defaultString(prefix)).append(
-				defaultString(otherName.getGivenName()), defaultString(givenName)).append(
-				defaultString(otherName.getMiddleName()), defaultString(middleName)).append(
-				defaultString(otherName.getFamilyNamePrefix()), defaultString(familyNamePrefix)).append(
-				defaultString(otherName.getDegree()), defaultString(degree)).append(defaultString(otherName.getFamilyName()),
-				defaultString(familyName)).append(defaultString(otherName.getFamilyName2()), defaultString(familyName2)).append(
-				defaultString(otherName.getFamilyNameSuffix()), defaultString(familyNameSuffix)).isEquals();
+			defaultString(otherName.getGivenName()), defaultString(givenName)).append(
+			defaultString(otherName.getMiddleName()), defaultString(middleName)).append(
+			defaultString(otherName.getFamilyNamePrefix()), defaultString(familyNamePrefix)).append(
+			defaultString(otherName.getDegree()), defaultString(degree)).append(defaultString(otherName.getFamilyName()),
+			defaultString(familyName)).append(defaultString(otherName.getFamilyName2()), defaultString(familyName2)).append(
+			defaultString(otherName.getFamilyNameSuffix()), defaultString(familyNameSuffix)).isEquals();
 	}
 
 	/**
@@ -187,7 +172,6 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 		if (pn.getVoidReason() != null) {
 			newName.setVoidReason(String.valueOf(pn.getVoidReason()));
 		}
-
 		if (pn.getDateChanged() != null) {
 			newName.setDateChanged((Date) pn.getDateChanged().clone());
 		}
@@ -197,14 +181,12 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 		if (pn.getDateVoided() != null) {
 			newName.setDateVoided((Date) pn.getDateVoided().clone());
 		}
-
 		if (pn.getPreferred() != null) {
 			newName.setPreferred(pn.getPreferred().booleanValue());
 		}
 		if (pn.getVoided() != null) {
 			newName.setVoided(pn.getVoided().booleanValue());
 		}
-
 		newName.setPerson(pn.getPerson());
 		newName.setVoidedBy(pn.getVoidedBy());
 		newName.setChangedBy(pn.getChangedBy());
@@ -523,8 +505,7 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 		dialog.setAlwaysOnTop(true);
 		dialog.setVisible(true);
 	}
-
-
+	
 	/**
 	 Provides a default comparator.
 	 @since 1.12
@@ -565,9 +546,7 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 			if (ret == 0 && !pn1.equalsContent(pn2)) {
 				ret = 1;
 			}
-
 			return ret;
 		}
 	}
-
 }
