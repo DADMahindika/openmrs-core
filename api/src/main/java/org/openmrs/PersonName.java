@@ -539,7 +539,6 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 			if (ret == 0 && pn1.getDateCreated() != null) {
 				ret = OpenmrsUtil.compareWithNullAsLatest(pn1.getDateCreated(), pn2.getDateCreated());
 			}
-
 			// if we've gotten this far, just check all name values. If they are
 			// equal, leave the objects at 0. If not, arbitrarily pick retValue=1
 			// and return that (they are not equal).
